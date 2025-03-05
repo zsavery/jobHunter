@@ -45,6 +45,38 @@ public class JobTable {
 
     }
 
+    public JobLine getJobLine(String address, String company, double salary, String position) {
+        for (JobLine jobLine : jobRows) {
+            if (jobLine.equals(new JobLine(new Job(address, company, salary, position)))) {
+                return jobLine;
+            }
+        }
+        return null;
+    }
+
+    public JobLine getJobLine(Job job) {
+        for (JobLine jobLine : jobRows) {
+            if (jobLine.equals(new JobLine(job))) {
+                return jobLine;
+            }
+        }
+        return null;
+    }
+
+    public JobLine getJobLine(int index){
+        return jobRows.get(index);
+
+    }
+
+    public JobLine getJobLine(JobLine jobLine) {
+        for (JobLine myJobLine : jobRows) {
+            if (myJobLine.equals(jobLine)) {
+                return jobLine;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         if (jobRows.isEmpty()) {
@@ -53,8 +85,8 @@ public class JobTable {
         StringBuilder result = new StringBuilder();
         result.append("JobTable=[\n");
         for (int i = 0; i < jobRows.size(); i++){
-            result.append("\t[").append(jobRows.get(i).toString());
-            if (i != jobRows.size()) {
+            result.append("\tjobLine=[").append(jobRows.get(i).toString());
+            if (i != jobRows.size()-1) {
                 result.append("],\n");
             }
         }
